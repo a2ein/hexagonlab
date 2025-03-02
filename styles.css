@@ -1,10 +1,25 @@
 /* General Styles */
-body {
+:root {
+    --primary-color: #1e90ff; /* Blue */
+    --secondary-color: #ff0000; /* Red */
+    --background-color: #000; /* Dark background */
+    --text-color: #fff; /* Light text */
+    --card-background: #222; /* Dark card background */
+  }
+  
+  [data-theme="light"] {
+    --background-color: #f4f4f4; /* Light background */
+    --text-color: #000; /* Dark text */
+    --card-background: #fff; /* Light card background */
+  }
+  
+  body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    color: #fff;
-    background-color: #000;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
   }
   
   .container {
@@ -14,11 +29,11 @@ body {
   }
   
   h1, h2, h3 {
-    color: #1e90ff; /* Blue */
+    color: var(--primary-color);
   }
   
   a {
-    color: #ff0000; /* Red */
+    color: var(--secondary-color);
     text-decoration: none;
   }
   
@@ -29,7 +44,7 @@ body {
   .btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ff0000; /* Red */
+    background-color: var(--secondary-color);
     color: #fff;
     border-radius: 5px;
     transition: background-color 0.3s;
@@ -39,11 +54,58 @@ body {
     background-color: #cc0000;
   }
   
+  /* Theme Toggle */
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .toggle-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .toggle-icon {
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    position: relative;
+    transition: background-color 0.3s;
+  }
+  
+  .toggle-icon::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+  }
+  
+  #theme-switch:checked + .toggle-label .toggle-icon {
+    background-color: var(--primary-color);
+  }
+  
+  #theme-switch:checked + .toggle-label .toggle-icon::before {
+    transform: translateX(20px);
+  }
+  
+  #theme-switch {
+    display: none;
+  }
+  
   /* Header */
   header {
-    background-color: #000;
+    background-color: var(--background-color);
     padding: 20px 0;
-    border-bottom: 2px solid #1e90ff;
+    border-bottom: 2px solid var(--primary-color);
   }
   
   header .logo {
@@ -65,7 +127,7 @@ body {
   
   /* Hero Section */
   .hero {
-    background-color: #1e90ff;
+    background-color: var(--primary-color);
     padding: 100px 0;
     text-align: center;
   }
@@ -97,10 +159,16 @@ body {
   }
   
   .project-card {
-    background-color: #222;
+    background-color: var(--card-background);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
   
   .project-card img {
@@ -125,9 +193,15 @@ body {
   }
   
   .research-item {
-    background-color: #222;
+    background-color: var(--card-background);
     padding: 20px;
     border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .research-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
   
   /* Partners Section */
@@ -149,7 +223,7 @@ body {
   
   /* Footer */
   footer {
-    background-color: #1e90ff;
+    background-color: var(--primary-color);
     padding: 40px 0;
     text-align: center;
   }
